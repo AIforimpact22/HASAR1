@@ -46,7 +46,16 @@ def purchase_page():
             st.markdown("<span style='color: #000000; font-weight: bold;'>WhatsApp Number</span>", unsafe_allow_html=True)
             whatsapp_number = st.text_input("WhatsApp Number", placeholder="Enter your WhatsApp number", label_visibility="collapsed")
             st.markdown("<span style='color: #000000; font-weight: bold;'>Email Address</span>", unsafe_allow_html=True)
-            email = st.text_input("Email Address", placeholder="Enter your email address", label_visibility="collapsed")
+            
+            # ►►► Automatically fill user's email ◄◄◄
+            user_email = st.experimental_user.email if st.experimental_user else ""
+            email = st.text_input(
+                "Email Address",
+                placeholder="Enter your email address",
+                label_visibility="collapsed",
+                value=user_email
+            )
+            
             st.markdown("<span style='color: #000000; font-weight: bold;'>Payment Method</span>", unsafe_allow_html=True)
             payment_preference = st.selectbox("Payment Method", ["Cash on Arrival"], help="Select your preferred payment method.", label_visibility="collapsed", disabled=True)
     
